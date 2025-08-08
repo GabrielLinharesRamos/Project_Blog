@@ -89,29 +89,28 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8" ref={cardRef}>
       {posts.map((post) => (
-        <SpotlightCard key={post.id}>
-            <a href={`posts/${post.id}`}>
-        <Card>
-          <CardHeader>
-            <p className="text-sm">
-              {new Date(post.date).getDate().toString().padStart(2, '0')},{' '}
-              {new Date(post.date).toLocaleString('en-US', { month: 'short' }).toLowerCase()}
-            </p>
-            <CardTitle>{post.title}</CardTitle>
-            <CardDescription>
-              {post.content.length > 150
-                ? post.content.slice(0, 100).trimEnd() + '...'
-                : post.content}
-            </CardDescription>
-            <CardAction>{post.views}</CardAction>
-          </CardHeader>
-          <CardContent>
-            <p className='flex flex-nowrap gap-2'>
-            Read More <MoveRight className="sm" />
-            </p>
-          </CardContent>
-        </Card>
-        </a>
+        <SpotlightCard key={post.href}>
+          <a href={`/posts/${post.href}`}>
+            <Card>
+              <CardHeader>
+                <p className="text-sm">
+                  {post.date}
+                </p>
+                <CardTitle>{post.title}</CardTitle>
+                <CardDescription>
+                  {post.content.length > 150
+                    ? post.content.slice(0, 100).trimEnd() + '...'
+                    : post.content}
+                </CardDescription>
+                <CardAction>{post.views}</CardAction>
+              </CardHeader>
+              <CardContent>
+                <p className='flex flex-nowrap gap-2'>
+                Read More <MoveRight className="sm" />
+                </p>
+              </CardContent>
+            </Card>
+          </a>
         </SpotlightCard>
       ))}
     </div>

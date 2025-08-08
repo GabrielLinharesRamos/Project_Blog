@@ -1,4 +1,3 @@
-import { getPostById } from "../../../lib/notion";
 import { FadeUpOnScroll } from '../../../components/FadeUpOnScroll';
 import LivePersonDetection from '../../../components/LivePersonDetection';
 import InstallInstructions from '../../../components/Cmd';
@@ -10,17 +9,17 @@ type Props = {
   };
 };
 
-export default async function PostPage({ params }: Props) {
-  const post = await getPostById(params.id);
+export default async function PostPage() {
 
   return (
     <div>
       <div className="bg-gray-100">
         <div className="mx-125 flex flex-col items-center justify-center">
-          <h1 className="my-17 text-3xl font-bold text-black">{post.title}</h1>
-          <p className="mb-17 text-xl text-gray-800 text-center">{post.content}</p>
+          <h1 className="my-17 text-3xl font-bold text-black">Real-Time People Detection with YOLO</h1>
+          <p className="mb-17 text-xl text-gray-800 text-center">This post describes the development of an application for real-time person recognition, using the Python language together with the YOLO and OpenCV libraries.</p>
         </div>
       </div>
+
 
       <div className="mx-150">
         <FadeUpOnScroll>

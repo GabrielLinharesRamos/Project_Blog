@@ -1,11 +1,9 @@
 // app/blog/page.tsx
-
-import { getPosts } from "../../lib/notion";
 import Blog from "../../components/Posts";
 
-export default async function BlogPage() {
-  const posts = await getPosts();
+import { posts } from '@/app/data/posts';
 
+export default async function BlogPage() {
   return (
     <Blog posts={posts} />
   );
