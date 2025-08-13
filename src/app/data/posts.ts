@@ -23,4 +23,12 @@ export const posts: Post[] = [
     views: '12k',
     date: '08,august',
   },
+  {
+    title: 'Django + Next.js',
+    href: 'page3',
+    content:
+      "How to combine the power of Django's robust backend with the performance and interactivity of Next.js to create modern, fast, and scalable web applications.",
+    views: '12k',
+    date: '10,august',
+  },
 ];

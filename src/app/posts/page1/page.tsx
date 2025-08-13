@@ -47,12 +47,14 @@ export default async function PostPage() {
 
         <FadeUpOnScroll>
           <p className="mb-10">First we need to do some installations in our project</p>
-          <InstallInstructions />
+          <InstallInstructions code={
+            `pip install opencv-python\npip install ultralytics\npip install torch torchvision torchaudio`
+            }/>
         </FadeUpOnScroll>
 
         <FadeUpOnScroll>
           <div className="my-10 flex items-center gap-2 text-2xl">
-            <FolderOpen className="mt-2" />
+            <FolderOpen className="mt-2"/>
             <span>opencv-python</span>
           </div>
           <p className="mb-10">
