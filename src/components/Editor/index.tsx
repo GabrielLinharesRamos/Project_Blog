@@ -132,10 +132,10 @@ export default function Editor() {
       case "fadeUp":
         return (
           <div className="p-3 bg-gray-800 rounded">
-            <label className="block text-white mb-2">Texto:</label>
+            <label className="block text-gray-200 mb-2">Texto:</label>
             <input
               type="text"
-              className="w-full text-white bg-gray-700 p-2 rounded"
+              className="w-full text-gray-200 bg-gray-700 p-2 rounded border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
               value={block.props.text}
               onChange={(e) => handleInputChange(block.id, "text", e.target.value)}
             />
@@ -149,19 +149,19 @@ export default function Editor() {
       case "typeWriting":
         return (
           <div className="p-3 bg-gray-800 rounded">
-            <label className="block text-white mb-2">Palavras:</label>
+            <label className="block text-gray-200 mb-2">Palavras:</label>
             {block.props.words.map((word, index) => (
               <div key={index} className="flex mb-2">
                 <input
                   type="text"
-                  className="flex-1 text-white bg-gray-700 p-2 rounded-l"
+                  className="flex-1 text-gray-200 bg-gray-700 p-2 rounded-l border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   value={word}
                   onChange={(e) =>
                     handleTypeWritingWordsChange(block.id, index, e.target.value)
                   }
                 />
                 <button
-                  className="bg-red-600 text-white px-2 rounded-r"
+                  className="btn btn-danger px-2 rounded-r"
                   onClick={() => handleRemoveWord(block.id, index)}
                   disabled={block.props.words.length <= 1}
                 >
@@ -170,7 +170,7 @@ export default function Editor() {
               </div>
             ))}
             <button
-              className="mt-2 bg-blue-600 text-white px-3 py-1 rounded"
+              className="btn btn-primary mt-2"
               onClick={() => handleAddWord(block.id)}
             >
               Adicionar palavra
@@ -183,11 +183,11 @@ export default function Editor() {
   };
 
   return (
-    <Card className="w-full max-w-6xl mx-auto p-6 rounded-lg">
-      <div className="mb-4 flex justify-between">
-        <h2 className="text-2xl font-bold text-white">Editor de Página</h2>
+    <Card className="w-full max-w-6xl mx-auto p-4 md:p-6 rounded-lg bg-gray-900 border border-gray-800">
+      <div className="mb-4 flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-200">Editor de Página</h2>
         <button
-          className={`px-4 py-2 rounded ${previewMode ? 'bg-gray-600' : 'bg-blue-600'} text-white`}
+          className={`btn ${previewMode ? 'btn-secondary' : 'btn-primary'} text-sm md:text-base`}
           onClick={() => setPreviewMode(!previewMode)}
         >
           {previewMode ? 'Voltar ao Editor' : 'Visualizar'}
@@ -195,19 +195,19 @@ export default function Editor() {
       </div>
 
       {previewMode ? (
-        <div className="p-8 bg-gray-900 text-white rounded-lg shadow-lg min-h-[400px]">
-          <div className="flex flex-col gap-4">
+        <div className="p-4 md:p-8 bg-gray-900 text-gray-200 rounded-lg shadow-lg min-h-[300px] md:min-h-[400px] border border-gray-800">
+          <div className="flex flex-col gap-3 md:gap-4">
             {blocks.map((block) => (
               <div key={block.id}>{renderComponent(block)}</div>
             ))}
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
+        <div className="flex flex-col gap-3 md:gap-4">
+          <div className="flex flex-col lg:flex-row gap-3 md:gap-4">
             <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
               <SortableContext items={blocks.map((b) => b.id)} strategy={verticalListSortingStrategy}>
-                <div className="w-2/3 bg-gray-800 p-4 rounded-lg">
+                <div className="w-full lg:w-2/3 bg-gray-800 p-3 md:p-4 rounded-lg border border-gray-700">
                   {blocks.length === 0 ? (
                     <div className="text-center text-gray-300 p-8">
                       Adicione componentes usando o menu à direita
@@ -217,9 +217,9 @@ export default function Editor() {
                       {blocks.map((block) => (
                         <SortableItem key={block.id} id={block.id}>
                           <div className="flex justify-between items-center w-full">
-                            <div className="font-medium text-white">{block.type}</div>
+                            <div className="font-medium text-gray-200">{block.type}</div>
                             <button
-                              className="text-red-500 hover:text-red-700"
+                              className="btn btn-ghost text-gray-400 hover:text-gray-200"
                               onClick={() => handleRemoveBlock(block.id)}
                             >
                               <X size={18} />
@@ -234,18 +234,18 @@ export default function Editor() {
               </SortableContext>
             </DndContext>
 
-            <div className="w-1/3 bg-gray-700 p-4 rounded-lg">
-              <h3 className="text-lg font-medium mb-4 text-white">Componentes Disponíveis</h3>
+            <div className="w-full lg:w-1/3 bg-gray-700 p-3 md:p-4 rounded-lg border border-gray-600">
+              <h3 className="text-base md:text-lg font-medium mb-3 md:mb-4 text-gray-200">Componentes Disponíveis</h3>
               <Select value={selectedValue} onValueChange={handleAddBlock}>
-                <SelectTrigger className="w-full mb-2">
+                <SelectTrigger className="w-full mb-2 bg-gray-800 border-gray-600 text-gray-200 text-sm md:text-base">
                   <SelectValue placeholder="Selecione um componente" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-gray-800 border-gray-600 text-gray-200">
                   <SelectGroup>
-                    <SelectLabel>Componentes:</SelectLabel>
-                    <SelectItem value="fadeUp">FadeUp</SelectItem>
-                    <SelectItem value="livePersonDetection">Live Person Detection</SelectItem>
-                    <SelectItem value="typeWriting">TypeWriting</SelectItem>
+                    <SelectLabel className="text-gray-300 text-xs md:text-sm">Componentes:</SelectLabel>
+                    <SelectItem value="fadeUp" className="hover:bg-gray-700 text-sm md:text-base">FadeUp</SelectItem>
+                    <SelectItem value="livePersonDetection" className="hover:bg-gray-700 text-sm md:text-base">Live Person Detection</SelectItem>
+                    <SelectItem value="typeWriting" className="hover:bg-gray-700 text-sm md:text-base">TypeWriting</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -253,11 +253,11 @@ export default function Editor() {
           </div>
 
           {blocks.length > 0 && (
-            <div className="mt-6 p-6 bg-gray-800 rounded-lg shadow-lg">
-              <h3 className="text-xl font-medium mb-4 text-white border-b border-gray-700 pb-2">
+            <div className="mt-4 md:mt-6 p-4 md:p-6 bg-gray-800 rounded-lg shadow-lg border border-gray-700">
+              <h3 className="text-lg md:text-xl font-medium mb-3 md:mb-4 text-gray-200 border-b border-gray-700 pb-2">
                 Visualização em Tempo Real
               </h3>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3 md:gap-4">
                 {blocks.map((block) => (
                   <div key={`preview-${block.id}`} className="border border-gray-700 rounded p-2">
                     {renderComponent(block)}

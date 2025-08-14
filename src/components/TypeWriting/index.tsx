@@ -7,7 +7,7 @@ interface MyComponentProps {
 
 export function TypeWriting({ words }: MyComponentProps) {
   return (
-    <div className='text-lg font-mono'>
+    <div className='text-base md:text-lg font-mono text-gray-200'>
       <Typewriter
         words={words}
         loop={1}

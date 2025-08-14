@@ -43,24 +43,24 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -76,6 +76,109 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* Padronização de tipografia */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  line-height: 1.2;
+  color: oklch(0.985 0 0);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: oklch(0.85 0 0);
+}
+
+a {
+  color: oklch(0.85 0 0);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: oklch(0.985 0 0);
+}
+
+/* Padronização de espaçamentos */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin: 2rem 0;
+  padding: 1rem 0;
+}
+
+/* Padronização de botões */
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: oklch(0.269 0 0);
+  color: oklch(0.985 0 0);
+  border: 1px solid oklch(0.4 0 0);
+  padding: 0.5rem 1rem;
+}
+
+.btn-primary:hover {
+  background-color: oklch(0.35 0 0);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: oklch(0.85 0 0);
+  border: 1px solid oklch(0.4 0 0);
+  padding: 0.5rem 1rem;
+}
+
+.btn-secondary:hover {
+  background-color: oklch(0.269 0 0);
+  color: oklch(0.985 0 0);
+}
+
+/* Resto do CSS original */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -151,14 +254,28 @@ html, body {
 /* codigo do projectblog */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
 
-/* p {
-  display: inline-block;
-  vertical-align: top;
-} */
+.text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  perspective: 1000px;
+}
 
 .word {
   position: absolute;
   opacity: 0;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .word {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .word {
+    font-size: 1.5rem;
+  }
 }
 
 .letter {

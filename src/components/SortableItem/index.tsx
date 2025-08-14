@@ -14,27 +14,23 @@ export default function SortableItem({ id, children }: SortableItemProps) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    padding: '1rem',
-    border: '1px solid #ccc',
-    borderRadius: '0.5rem',
-    marginBottom: '0.5rem',
-    background: '#1f2937',
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '0.5rem'
   };
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <div 
+      ref={setNodeRef} 
+      style={style} 
+      className="p-2 sm:p-3 md:p-4 border border-gray-700 rounded-lg mb-2 bg-gray-800 flex items-start gap-2 sm:gap-3 md:gap-4 w-full shadow-sm hover:shadow-md transition-shadow duration-200"
+    >
       <span
         {...attributes}
         {...listeners}
-        style={{ cursor: 'grab', display: 'flex', alignItems: 'center' }}
+        className="cursor-grab touch-none text-gray-400 hover:text-gray-300 transition-colors"
       >
-        <GripVertical size={20} />
+        <GripVertical size={16} className="md:size-5" />
       </span>
 
-      <div style={{ flex: 1 }}>
+      <div className="flex-1 w-full">
         {children}
       </div>
     </div>

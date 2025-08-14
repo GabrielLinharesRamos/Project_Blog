@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Montserrat } from 'next/font/google';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 import { usePathname } from "next/navigation";
 
 const montserrat = Montserrat({
@@ -25,11 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        style={{ backgroundColor: '#18181b' }}
-        className={`${montserrat.variable} antialiased text-gray-100`}
+        className={`${montserrat.variable} antialiased text-gray-100 bg-gray-900 flex flex-col min-h-screen`}
       >
-        {shouldShowHeader && <Header />} {/* Renderização condicional aqui */}
-        {children}
+        {shouldShowHeader && <Header />}
+        <main className="flex-grow">{children}</main>
+        {shouldShowHeader && <Footer />}
       </body>
     </html>
   );

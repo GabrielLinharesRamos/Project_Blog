@@ -18,7 +18,7 @@ export default function ParticlesBackground() {
         options={{
           fullScreen: false,
           background: {
-            color: { value: "#18181b" },
+            color: { value: "#111111" },
           },
           fpsLimit: 60,
           particles: {
@@ -26,7 +26,7 @@ export default function ParticlesBackground() {
               value: 20,
               density: { enable: true, area: 800 }
             },
-            color: { value: "#ffffff" },
+            color: { value: "#888888" },
             shape: { type: "circle" },
             opacity: { value: 0.3 },
             size: { value: { min: 2, max: 2 } },
@@ -39,7 +39,7 @@ export default function ParticlesBackground() {
             links: {
               enable: false,
               distance: 150,
-              color: "#ffffff",
+              color: "#888888",
               opacity: 0.4,
               width: 1
             }

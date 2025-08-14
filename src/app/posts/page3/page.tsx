@@ -1,135 +1,231 @@
+'use client';
+
 import { posts } from '@/app/data/posts';
 import InstallInstructions from '@/components/Cmd';
 import { FadeUpOnScroll } from '@/components/FadeUpOnScroll';
-import { div } from '@tensorflow/tfjs';
-import { Binary,LaptopMinimal,PcCase } from "lucide-react";
+import { TypeWriting } from '@/components/TypeWriting';
+import { useState, useEffect } from 'react';
+import { ThumbsUp, Share2, Bookmark, Binary, FolderOpen } from "lucide-react";
 
-export default function Page2() {
+export default function Page3() {
   const post = posts.find((p) => p.href === 'page3');
+  const [likes, setLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Função para lidar com likes
+  const handleLike = () => {
+    if (isLiked) {
+      setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
+    }
+    setIsLiked(!isLiked);
+  };
+
+  // Função para lidar com bookmark
+  const handleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+  };
+
+  // Função para scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Detectar scroll para mostrar botão de voltar ao topo
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (!post) return <div className="mx-125 flex flex-col items-center justify-center">Post não encontrado</div>;
 
   return (
-    <div>
-      <div className="bg-gray-100">
-        <div className="mx-125 flex flex-col items-center justify-center">
-          <h1 className="my-17 text-3xl font-bold text-black">{post.title}</h1>
-          <p className="mb-17 text-xl text-gray-800 text-center">{post.content}</p>
+    <div className="bg-gray-900 text-gray-100 min-h-screen">
+      <div className="relative">
+        <div className="bg-gradient-to-r from-gray-900 to-gray-800 py-12 md:py-20">
+          <div className="max-w-4xl mx-auto px-4 flex flex-col items-center justify-center text-center">
+            <FadeUpOnScroll>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 text-white">Building a Modern Web Application with Next.js</h1>
+              <div className="mb-6 md:mb-8">
+                <TypeWriting words={['This post explores the process of creating a modern web application using Next.js, React, and Tailwind CSS.']} />
+              </div>
+            </FadeUpOnScroll>
+            
+            <FadeUpOnScroll>
+              <div className="flex items-center justify-center space-x-4 mb-6 md:mb-8">
+                <div className="flex items-center space-x-2 text-gray-400">
+                  <FolderOpen size={16} />
+                  <span>Web Development</span>
+                </div>
+              </div>
+            </FadeUpOnScroll>
+          </div>
         </div>
       </div>
+      
+      <div className="sticky mt-8 top-4 z-40 bg-gray-800/80 backdrop-blur-sm rounded-lg p-2 md:p-3 mb-6 md:mb-8 mx-auto max-w-6xl">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2 md:gap-4">
+            <button 
+              onClick={handleLike} 
+              className="btn btn-secondary flex items-center gap-1 text-sm md:text-base"
+            >
+              <ThumbsUp size={16} className={isLiked ? 'fill-current' : ''} />
+              <span>{likes}</span>
+            </button>
 
-      <div className="mx-150">
-
-        <FadeUpOnScroll>
-          <p className="my-10">
-            To use Django and Next.js together in a project, the first step is to install and configure both frameworks separately, ensuring that each performs its own specific function.
-            Django will be responsible for the backend, handling business logic, data persistence, and API provisioning, while Next.js will be responsible for the frontend, offering a fast,
-            interactive, and SEO-optimized interface.
-          </p>
-        </FadeUpOnScroll>
-
-        <FadeUpOnScroll>
-          <p className="text-2xl font-bold mt-10 mb-5 text-3xl">Django</p>
-          <hr className="mb-5" />
-        </FadeUpOnScroll>
-
-        <FadeUpOnScroll>
-          <p className="my-10">
-            Well, to install Django we will need three things:
-          </p>
-          <ul className='my-6 ml-6 list-disc [&>li]:mt-2'>
-            <li>
-              <strong>Python</strong> – Programming language that will be used for backend development.
-            </li>
-            <li>
-              <strong>Virtual Environment</strong> – Isolated environment where the project libraries will be installed.
-            </li>
-            <li>
-              <strong>Django</strong> – Python-based backend framework that we will use to build the application.
-            </li>
-          </ul>
-
-
-
-          <br />
-
-          <div className="my-10 flex items-center gap-2 text-2xl">
-            <Binary className="mt-2"/>
-            <span>Python</span>
+            <button className="btn btn-secondary flex items-center gap-1 text-sm md:text-base">
+              <Share2 size={16} />
+              <span className="hidden sm:inline">Share</span>
+            </button>
           </div>
-          <p className="my-10">
-            To install Python, first download the latest version from the official 
-            <a href="https://www.python.org/downloads/"> Python website</a>. 
-            Run the installer, and during the installation process, make sure to check 
-            the option **"Add Python to PATH"** before completing the setup.
-          </p>
+          
+          <button 
+            className="btn btn-secondary"
+            onClick={() => setIsBookmarked(!isBookmarked)}
+          >
+            <Bookmark size={16} className={isBookmarked ? 'fill-current' : ''} />
+          </button>
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-4 py-6 md:py-8">
+        <article className="prose prose-sm md:prose-lg prose-invert max-w-none">
+          
+            <div className="bg-gray-800/50 p-4 md:p-6 rounded-xl mb-6 md:mb-8">
+            
+            <FadeUpOnScroll>
+                <p className="text-lg leading-relaxed text-gray-700">
+                  To use Django and Next.js together in a project, the first step is to install and configure both frameworks separately, ensuring that each performs its own specific function.
+                  Django will be responsible for the backend, handling business logic, data persistence, and API provisioning, while Next.js will be responsible for the frontend, offering a fast,
+                  interactive, and SEO-optimized interface.
+                </p>
+            </FadeUpOnScroll>
+            </div>
+            <FadeUpOnScroll>
+              <h2 className="mb-6 text-3xl font-bold text-gray-800">Django</h2>
+              <hr className="mb-6" />
+            </FadeUpOnScroll>
 
-          <p className="my-10">
-            if you you aren't sure if Python is installed, you can check by running the following command in your terminal:
-          </p>
-
-          <InstallInstructions code={
-            `python --version`
-            }/>
-
-          <div className="my-10 flex items-center gap-2 text-2xl">
-            <LaptopMinimal className="mt-2"/>
-            <span>Virtual Enviromnent</span>
-          </div>
-
-          <p className="my-10">
-            In the folder where you want to create your project, run the command above in the terminal to create a virtual environment:
-          </p>
-
-          <InstallInstructions code={
-            `python -m venv your_venv_name_env`
-            }/>
-
-          <p className="my-10">
-            For activate you venv. Go to the folder where created your venv and run the command above in the terminal to activate your virtual environment:
-          </p>
-
-          <InstallInstructions code={
-            `venv\\Scripts\\activate`
-            }/>
-
-
-          <br />
-
-          <div className="my-10 flex items-center gap-2 text-2xl">
-            <PcCase className="mt-2"/>
-            <span>Django Framework</span>
-          </div>
-
-          <p className="my-10">
-            With the venv active, you can now install Django using pip, Python's package manager. Run the following command in the terminal:
-          </p>
-
-          <InstallInstructions code={
-            `pip install django`
-            }/>
-
-          <p className="my-10">
-            then you can create a new django project by running:
-          </p>
-
-          <InstallInstructions code={
-            `django-admin startproject nome_do_projeto`
-          }/>
+            <FadeUpOnScroll>
+            <p className="mb-6 text-lg text-gray-700">
+              Well, to install Django we will need three things:
+            </p>
+            <ul className='mb-6 ml-6 list-disc [&>li]:mt-2'>
+              <li className="text-gray-200">
+                <strong className="text-gray-100">Python</strong> – Programming language that will be used for backend development.
+              </li>
+              <li className="text-gray-200">
+                <strong className="text-gray-100">Virtual Environment</strong> – Isolated environment where the project libraries will be installed.
+              </li>
+              <li className="text-gray-200">
+                <strong className="text-gray-100">Django</strong> – Python-based backend framework that we will use to build the application.
+              </li>
+            </ul>
           </FadeUpOnScroll>
 
-        <FadeUpOnScroll>
-          <p className="text-2xl font-bold mt-10 mb-5 text-3xl">Next.js</p>
-          <hr className="mb-5" />
-        </FadeUpOnScroll>
+          <FadeUpOnScroll>
+            <div className="my-8 flex items-center gap-3 rounded-lg bg-blue-50 p-4 text-2xl text-blue-800">
+              <Binary className="h-8 w-8" />
+              <span className="font-semibold">Python</span>
+            </div>
+            <p className="mb-6 text-lg text-gray-700">
+              To install Python, first download the latest version from the official
+              <a href="https://www.python.org/downloads/" className="text-blue-600 hover:underline"> Python website</a>.
+              Run the installer, and during the installation process, make sure to check
+              the option <strong className="text-gray-200">"Add Python to PATH"</strong> before completing the setup.
+            </p>
 
-        <FadeUpOnScroll>
-          <p className="my-10">
-            Django and Next.js complement each other perfectly: while Django offers a solid, secure, and scalable backend, Next.js delivers fast, responsive, and SEO-optimized interfaces.
-            This partnership is ideal for projects that require high performance and easy long-term maintenance.
-          </p>
-        </FadeUpOnScroll>
+            <p className="mb-6 text-lg text-gray-700">
+              If you aren't sure if Python is installed, you can check by running the following command in your terminal:
+            </p>
+
+            
+            <InstallInstructions code={`python --version`} />
+
+          </FadeUpOnScroll>
+
+          <FadeUpOnScroll>
+            <div className="my-8 flex items-center gap-3 rounded-lg bg-green-50 p-4 text-2xl text-green-800">
+              {/* <LaptopMinimal className="h-8 w-8" /> */}
+              <span className="font-semibold">Virtual Environment</span>
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              In the folder where you want to create your project, run the command below in the terminal to create a virtual environment:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`python -m venv your_venv_name_env`} />
+
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              To activate your venv, go to the folder where you created your venv and run the command below in the terminal:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`venv\Scripts\activate`} />
+            </div>
+          </FadeUpOnScroll>
+          <FadeUpOnScroll>
+            <div className="my-8 flex items-center gap-3 rounded-lg bg-purple-50 p-4 text-2xl text-purple-800">
+              {/* <PcCase className="h-8 w-8" /> */}
+              <span className="font-semibold">Django Framework</span>
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              With the venv active, you can now install Django using pip, Python's package manager. Run the following command in the terminal:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`pip install django`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              Then you can create a new Django project by running:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`django-admin startproject nome_do_projeto`} />
+            </div>
+          </FadeUpOnScroll>
+
+          <FadeUpOnScroll>
+            <h2 className="mb-6 mt-12 text-3xl font-bold text-gray-800">Next.js</h2>
+            <hr className="mb-6" />
+          </FadeUpOnScroll>
+
+          <FadeUpOnScroll>
+              <p className="text-lg leading-relaxed text-gray-800">
+                Django and Next.js complement each other perfectly: while Django offers a solid, secure, and scalable backend, Next.js delivers fast, responsive, and SEO-optimized interfaces.
+                This partnership is ideal for projects that require high performance and easy long-term maintenance.
+              </p>
+
+              <br />
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`npx create-next-app@latest my-nextjs-app`} />
+            </div>
+          </FadeUpOnScroll>
+            
+            {showScrollTop && (
+              <button 
+                onClick={scrollToTop}
+                className="btn btn-primary fixed bottom-6 right-6 p-2 rounded-full shadow-lg z-50"
+                aria-label="Voltar ao topo"
+              >
+                {/* <ChevronUp size={20} /> */}
+              </button>
+            )}
+          </article>
+        </div>
       </div>
-    </div>
   );
 }

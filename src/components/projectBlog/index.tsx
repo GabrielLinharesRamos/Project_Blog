@@ -71,9 +71,9 @@ export function ProjectBlog() {
   }, []);
 
   return (
-    <div className="text" ref={containerRef}>
-      <p>Project where I talk about things like </p>
-      <p>
+    <div className="text relative p-2 md:p-4 overflow-hidden" ref={containerRef}>
+      <p className="text-sm md:text-base lg:text-lg">Project where I talk about things like </p>
+      <p className="min-h-[1.5em] md:min-h-[1.75em] relative">
         <span className="word green">Project</span>
         <span className="word wisteria">coding.</span>
         <span className="word belize">videogames.</span>

@@ -34,7 +34,9 @@ export default function LivePersonDetection() {
               ctx.strokeStyle = '#00FF00'
               ctx.lineWidth = 2
               ctx.strokeRect(x, y, width, height)
-              ctx.font = '18px Arial'
+              // Ajuste responsivo do tamanho da fonte baseado na largura do canvas
+              const fontSize = canvas.width < 400 ? 14 : 18
+              ctx.font = `${fontSize}px Arial`
               ctx.fillStyle = '#00FF00'
               ctx.fillText(
                 `${prediction.class} (${Math.round(prediction.score * 100)}%)`,
@@ -53,7 +55,7 @@ export default function LivePersonDetection() {
   }, [])
 
   return (
-    <div className="relative w-full max-w-xl mx-auto">
+    <div className="relative w-full max-w-xl mx-auto rounded-lg overflow-hidden shadow-lg">
       <Webcam
         ref={webcamRef}
         audio={false}
@@ -61,11 +63,15 @@ export default function LivePersonDetection() {
           width: '100%',
           height: 'auto',
         }}
+        className="rounded-lg"
       />
       <canvas
         ref={canvasRef}
         className="absolute top-0 left-0 z-10"
       />
+      <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs md:text-sm p-2 text-center">
+        Detecção de pessoas em tempo real
+      </div>
     </div>
   )
 }
