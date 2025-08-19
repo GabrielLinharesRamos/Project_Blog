@@ -26,9 +26,9 @@ export function Header() {
                     </ul>
                 </div>
                 
-                {/* Botão do menu mobile */}
+            {/* Botão do menu mobile */}
                 <button 
-                    className="block sm:hidden text-gray-100 hover:text-gray-300 transition-colors"
+                    className="sm:hidden !block text-gray-100 hover:text-gray-300 transition-colors"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label="Toggle menu"
                 >

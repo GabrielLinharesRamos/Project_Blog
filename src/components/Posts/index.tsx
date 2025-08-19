@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { MoveRight, Search } from 'lucide-react';
 import { SpotlightCard } from "../Spotlightcard";
 import { TypeWriting } from "../TypeWriting";
@@ -28,7 +28,6 @@ type Post = {
 };
 
 export default function BlogClient({ posts }: { posts: Post[] }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   
@@ -45,7 +44,7 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
 
 
   return (
-    <main className="p-4 text-gray-100 relative min-h-screen bg-gray-900">
+    <main className="p-4 text-gray-100 relative min-h-full bg-gray-900">
       <div className="absolute inset-0 z-0">
         <ParticlesBackground />
       </div>
@@ -102,7 +101,10 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
                     <a href={`/posts/${post.href || post.slug}`}>
                       <Card className="h-full bg-gray-800/80 border-gray-700 transition-all flex flex-col">
                         <CardHeader className="flex flex-col flex-grow">
-                          <p className="text-sm text-gray-400">{post.date || 'Sem data'}</p>
+                          <div className="flex justify-between w-80">
+                            <p className="text-sm text-gray-400">{post.date || 'Sem data'}</p>
+                            <CardAction>{post.views || '0'} views</CardAction>
+                          </div>
                           <CardTitle className="text-xl font-bold flex-grow">{post.title}</CardTitle>
                           <CardDescription className="text-gray-300 flex-grow">
                             {post.content.length > 150
@@ -118,7 +120,6 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
                               ))}
                             </div>
                           )}
-                          <CardAction>{post.views || '0'} views</CardAction>
                         </CardHeader>
                         <CardContent className="mt-auto">
                           <p className='flex items-center gap-2 text-gray-400 group-hover:text-gray-300'>

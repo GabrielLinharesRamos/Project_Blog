@@ -117,12 +117,10 @@ h6 {
 }
 
 p {
-  margin-bottom: 1rem;
   color: oklch(0.85 0 0);
 }
 
 a {
-  color: oklch(0.85 0 0);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }

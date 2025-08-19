@@ -111,9 +111,7 @@ export default function Page3() {
             <FadeUpOnScroll>
               <h2 className="mb-6 text-3xl font-bold text-gray-800">Django</h2>
               <hr className="mb-6" />
-            </FadeUpOnScroll>
 
-            <FadeUpOnScroll>
             <p className="mb-6 text-lg text-gray-700">
               Well, to install Django we will need three things:
             </p>
@@ -149,9 +147,6 @@ export default function Page3() {
             
             <InstallInstructions code={`python --version`} />
 
-          </FadeUpOnScroll>
-
-          <FadeUpOnScroll>
             <div className="my-8 flex items-center gap-3 rounded-lg bg-green-50 p-4 text-2xl text-green-800">
               {/* <LaptopMinimal className="h-8 w-8" /> */}
               <span className="font-semibold">Virtual Environment</span>
@@ -171,10 +166,9 @@ export default function Page3() {
             </p>
 
             <div className="relative mb-8">
-              <InstallInstructions code={`venv\Scripts\activate`} />
+              <InstallInstructions code={`venv\\Scripts\\activate`} />
             </div>
-          </FadeUpOnScroll>
-          <FadeUpOnScroll>
+
             <div className="my-8 flex items-center gap-3 rounded-lg bg-purple-50 p-4 text-2xl text-purple-800">
               {/* <PcCase className="h-8 w-8" /> */}
               <span className="font-semibold">Django Framework</span>
@@ -184,9 +178,9 @@ export default function Page3() {
               With the venv active, you can now install Django using pip, Python's package manager. Run the following command in the terminal:
             </p>
 
-            <div className="relative mb-8">
+            {/* <div className="relative mb-8">
               <InstallInstructions code={`pip install django`} />
-            </div>
+            </div> */}
 
             <p className="mb-6 text-lg text-gray-700">
               Then you can create a new Django project by running:
@@ -195,9 +189,7 @@ export default function Page3() {
             <div className="relative mb-8">
               <InstallInstructions code={`django-admin startproject nome_do_projeto`} />
             </div>
-          </FadeUpOnScroll>
 
-          <FadeUpOnScroll>
             <h2 className="mb-6 mt-12 text-3xl font-bold text-gray-800">Next.js</h2>
             <hr className="mb-6" />
           </FadeUpOnScroll>
@@ -208,10 +200,101 @@ export default function Page3() {
                 This partnership is ideal for projects that require high performance and easy long-term maintenance.
               </p>
 
-              <br />
+            <div className="my-8 flex items-center gap-3 rounded-lg bg-yellow-50 p-4 text-2xl text-yellow-800">
+              <FolderOpen className="h-8 w-8" />
+              <span className="font-semibold">Next.js Installation</span>
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              To start a new Next.js project, you need to have Node.js installed. Once Node.js is ready, run the command below to create a new Next.js application:
+            </p>
 
             <div className="relative mb-8">
               <InstallInstructions code={`npx create-next-app@latest my-nextjs-app`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-700">
+              After the installation finishes, navigate to your project folder and start the development server:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`npm run dev`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-200">
+              Once your development server is running, open your browser and go to{' '}
+              <a 
+                href="http://localhost:3000" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:underline"
+              >
+                http://localhost:3000
+              </a>{' '}
+              to see your new Next.js application in action.
+            </p>
+          </FadeUpOnScroll>
+
+          <FadeUpOnScroll>
+            <h2 className="mb-6 mt-12 text-3xl font-bold text-gray-800">Integrating Next.js with Django</h2>
+            <hr className="mb-6" />
+            <p className="mb-6 text-lg text-gray-200">
+              To integrate your Next.js frontend with a Django backend, you typically expose APIs from Django that your Next.js app can consume. 
+              This approach allows you to keep a clean separation between the frontend and backend, while still leveraging the full power of both frameworks.
+            </p>
+
+            <div className="my-8 flex items-center gap-3 rounded-lg bg-indigo-50 p-4 text-2xl text-indigo-800">
+              <FolderOpen className="h-8 w-8" />
+              <span className="font-semibold">Django REST Framework (DRF)</span>
+            </div>
+
+            <p className="mb-6 text-lg text-gray-200">
+              To connect your Next.js frontend with a Django backend, you need Django to expose APIs that your frontend can consume. The most common approach is using <strong className="text-gray-100">Django REST Framework (DRF)</strong> to create REST APIs.
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`pip install djangorestframework`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-200">
+              After installing DRF, add it to your <strong className="text-gray-100">INSTALLED_APPS</strong> in <code className="bg-gray-800 px-1 rounded">settings.py</code>:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`INSTALLED_APPS = [\n    ...\n    'rest_framework',\n]`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-200">
+              Next, create your API endpoints in Django using serializers and viewsets. Once your API is running (usually at <strong className="text-gray-100">http://localhost:8000/api/</strong>), you can fetch data from your Next.js frontend.
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`// Example fetch in Next.js\nconst res = await fetch('http://localhost:8000/api/posts/');\nconst data = await res.json();\nconsole.log(data);`} />
+            </div>
+
+            <p className="mb-6 text-lg text-gray-200">
+              This setup allows your Next.js application to render data dynamically from Django while benefiting from server-side rendering (SSR), static generation (SSG), and React's interactivity on the frontend.
+            </p>
+
+            <p className="mb-6 text-lg text-gray-200">
+              Remember to handle CORS by installing <strong className="text-gray-100">django-cors-headers</strong> and configuring it in <code className="bg-gray-800 px-1 rounded">settings.py</code>:
+            </p>
+
+            <div className="relative mb-8">
+              <InstallInstructions code={`pip install django-cors-headers`} />
+              <InstallInstructions code={`INSTALLED_APPS += ['corsheaders']\nMIDDLEWARE = ['corsheaders.middleware.CorsMiddleware', ...]\nCORS_ALLOW_ALL_ORIGINS = True`} />
+            </div>
+
+            <div className="mb-6 p-4 rounded-lg bg-gray-800/50 text-gray-100">
+              <p className="text-lg font-medium">
+                Key points before starting:
+              </p>
+              <ul className="list-disc ml-6 mt-2 space-y-1">
+                <li>Django will handle the backend logic, database, and API endpoints.</li>
+                <li>Next.js will be responsible for rendering the frontend and fetching data from Django APIs.</li>
+                <li>Use Django REST Framework (DRF) to easily create RESTful APIs.</li>
+                <li>Don't forget to configure CORS to allow Next.js to access Django endpoints.</li>
+              </ul>
             </div>
           </FadeUpOnScroll>
             
