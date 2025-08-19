@@ -7,12 +7,17 @@ This project is also part of my **personal brand portfolio**, showcasing not onl
 ---
 
 ## ✨ Features
+
 - 📰 Blog posts about tech, coding, games, and personal insights.  
+
 - ⚡ Built with [Next.js](https://nextjs.org/) for performance and scalability.  
+
 - 🎨 Clean and responsive design, optimized for all devices.  
+
 - 🛠️ Easy to extend and customize with dynamic content.  
 
-GitHub: [@GabrielLinharesRamos](https://github.com/GabrielLinharesRamos)
+
+GitHub: [GabrielLinharesRamos](https://github.com/GabrielLinharesRamos)
 
 LinkedIn: [Gabriel Linhares](https://www.linkedin.com/in/gabriel-linhares-3759611a9/)
 
