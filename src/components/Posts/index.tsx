@@ -19,7 +19,6 @@ import {
 type Post = {
   id: string;
   title: string;
-  slug: string;
   content: string;
   href?: string;
   date?: string;
@@ -96,9 +95,9 @@ export default function BlogClient({ posts }: { posts: Post[] }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
             {filteredPosts.length > 0 ? (
               filteredPosts.map((post, index) => (
-                <div key={post.id || index} className="transform transition-all duration-300 hover:scale-105">
+                <div key={index} className="transform transition-all duration-300 hover:scale-105">
                   <SpotlightCard>
-                    <a href={`/posts/${post.href || post.slug}`}>
+                    <a href={`/posts/${post.href}`}>
                       <Card className="h-full bg-gray-800/80 border-gray-700 transition-all flex flex-col">
                         <CardHeader className="flex flex-col flex-grow">
                           <div className="flex justify-between w-80">
