@@ -16,7 +16,7 @@ This project is also part of my **personal brand portfolio**, showcasing not onl
 
 - 🛠️ Easy to extend and customize with dynamic content.  
 
-\n
+
 GitHub: [GabrielLinharesRamos](https://github.com/GabrielLinharesRamos)
 
 LinkedIn: [Gabriel Linhares](https://www.linkedin.com/in/gabriel-linhares-3759611a9/)
