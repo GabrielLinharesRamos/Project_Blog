@@ -18,20 +18,6 @@ LinkedIn: [Gabriel Linhares](https://www.linkedin.com/in/gabriel-linhares-375961
 
 ---
 
-
-## 📂 Project Structure
-firstproject/
- ┣ 📂 src/         # Next.js pages
- ┃ ┣
- ┃ ┣
- ┃ ┣
- ┃ ┣
- ┣ 📂 components/    # Reusable UI components
- ┣ 📂 public/        # Static assets (images, icons, etc.)
- ┣ 📂 styles/        # Global and modular CSS
- ┣ 📄 package.json   # Dependencies and scripts
- ┗ 📄 README.md      # Project documentation
-
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
