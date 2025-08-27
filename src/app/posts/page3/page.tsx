@@ -5,7 +5,7 @@ import InstallInstructions from '@/components/Cmd';
 import { FadeUpOnScroll } from '@/components/FadeUpOnScroll';
 import { TypeWriting } from '@/components/TypeWriting';
 import { useState, useEffect } from 'react';
-import { ThumbsUp, Share2, Bookmark, Binary, FolderOpen } from "lucide-react";
+import { ThumbsUp, Share2, Bookmark, Binary, FolderOpen,Server,Cloud } from "lucide-react";
 
 export default function Page3() {
   const post = posts.find((p) => p.href === 'page3');
@@ -149,6 +149,7 @@ export default function Page3() {
 
             <div className="my-8 flex items-center gap-3 rounded-lg bg-green-50 p-4 text-2xl text-green-800">
               {/* <LaptopMinimal className="h-8 w-8" /> */}
+              <Server class='h-8 w-8'/>
               <span className="font-semibold">Virtual Environment</span>
             </div>
 
@@ -169,8 +170,12 @@ export default function Page3() {
               <InstallInstructions code={`venv\\Scripts\\activate`} />
             </div>
 
+            <p className="mb-6 text-lg text-gray-700">
+              After doing this, you will see some visual feedback indicating that the environment has been activated.
+            </p>
+
             <div className="my-8 flex items-center gap-3 rounded-lg bg-purple-50 p-4 text-2xl text-purple-800">
-              {/* <PcCase className="h-8 w-8" /> */}
+              <Cloud className='h-8 w-8'/>
               <span className="font-semibold">Django Framework</span>
             </div>
 
@@ -178,9 +183,9 @@ export default function Page3() {
               With the venv active, you can now install Django using pip, Python's package manager. Run the following command in the terminal:
             </p>
 
-            {/* <div className="relative mb-8">
+            <div className="relative mb-8">
               <InstallInstructions code={`pip install django`} />
-            </div> */}
+            </div>
 
             <p className="mb-6 text-lg text-gray-700">
               Then you can create a new Django project by running:
@@ -282,6 +287,7 @@ export default function Page3() {
 
             <div className="relative mb-8">
               <InstallInstructions code={`pip install django-cors-headers`} />
+              <br />
               <InstallInstructions code={`INSTALLED_APPS += ['corsheaders']\nMIDDLEWARE = ['corsheaders.middleware.CorsMiddleware', ...]\nCORS_ALLOW_ALL_ORIGINS = True`} />
             </div>
 
