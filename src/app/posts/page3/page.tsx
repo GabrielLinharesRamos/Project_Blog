@@ -149,7 +149,7 @@ export default function Page3() {
 
             <div className="my-8 flex items-center gap-3 rounded-lg bg-green-50 p-4 text-2xl text-green-800">
               {/* <LaptopMinimal className="h-8 w-8" /> */}
-              <Server class='h-8 w-8'/>
+              <Server className='h-8 w-8'/>
               <span className="font-semibold">Virtual Environment</span>
             </div>
 
